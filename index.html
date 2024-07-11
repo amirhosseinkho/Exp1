@@ -16,13 +16,25 @@
     </nav>
     <h1>Welcome to Static Frontend</h1>
     <div id='content'></div>
+    <div id='home'>
+        <h2>Welcome to Our Site</h2>
+        <p>This is the home section.</p>
+    </div>
     <div id='about' style='display: none;'>
         <h2>About Us</h2>
         <p>This is the about section.</p>
     </div>
     <div id='contact' style='display: none;'>
         <h2>Contact Us</h2>
-        <p>This is the contact section.</p>
+        <form>
+            <label for='name'>Name:</label>
+            <input type='text' id='name' name='name'><br>
+            <label for='email'>Email:</label>
+            <input type='email' id='email' name='email'><br>
+            <label for='message'>Message:</label><br>
+            <textarea id='message' name='message'></textarea><br>
+            <button type='submit'>Send</button>
+        </form>
     </div>
     <footer>
         <p>&copy; 2024 Static Frontend. All rights reserved.</p>
