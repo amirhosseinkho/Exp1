@@ -13,5 +13,12 @@ document.querySelectorAll('nav ul li a').forEach(link => {
 });
 document.querySelector('#contact form').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Form submitted!');
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    if (name && email && message) {
+        alert('Form submitted!');
+    } else {
+        alert('Please fill in all fields.');
+    }
 });
