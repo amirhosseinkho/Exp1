@@ -1,3 +1,6 @@
+function updateContent(newContent) {
+    document.getElementById('content').innerText = newContent;
+}
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('content').innerText = 'This is a simple static frontend project.';
+    updateContent('This is a simple static frontend project.');
 });
