@@ -1,13 +1,13 @@
-function updateContent(newContent) {
-    document.getElementById('content').innerText = newContent;
+function updateContent(section) {
+    document.querySelectorAll('div[id]').forEach(sec => sec.style.display = 'none');
+    document.getElementById(section).style.display = 'block';
 }
 document.addEventListener('DOMContentLoaded', () => {
-    updateContent('This is a simple static frontend project.');
+    updateContent('home');
 });
 document.querySelectorAll('nav ul li a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const text = 'You clicked on ' + link.innerText;
-        updateContent(text);
+        updateContent(link.innerText.toLowerCase());
     });
 });
