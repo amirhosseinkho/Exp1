@@ -11,3 +11,7 @@ document.querySelectorAll('nav ul li a').forEach(link => {
         updateContent(link.innerText.toLowerCase());
     });
 });
+document.querySelector('#contact form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Form submitted!');
+});
