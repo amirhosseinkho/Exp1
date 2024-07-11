@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "build": "echo 'No build necessary for static HTML/CSS/JS project'"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
