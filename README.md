@@ -1,137 +1,115 @@
-به نام خدا
+> Persian version: [README.fa.md](README.fa.md)
 
-گزارش کار آزمایش اول آزمایشگاه مهندسی نرم افزار
+# Software Engineering Lab, Experiment 1: Git and GitHub
 
-تهیه کنندگان:
-امیرحسین خویینی‌ها
-علی رحیمی
+Lab report by Amirhossein Khoeiniha and Ali Rahimi.
 
-## مقدمه
-در این آزمایش به بررسی گیت و گیت هاب پرداخته شده است. پروژه انجام شده در این آزمایش یک قرعه‌کشی لینکلن ساده می‌باشد. در این آزمایش از گیت هاب اکشن نیز استفاده شده است، و انتشار روی گیت هاب پیج نیز انجام شده است.
+## Introduction
 
-## ساخت پروژه در گیت هاب
-در مرحله اول در سایت گیت هاب، یک مخزن ساخته شده است، و در ادامه با استفاده از کلمه زیر در دستگاه لوکال کلون شده است.
+This experiment covers Git and GitHub. The project built for it is a simple static front-end website (`index.html`, `styles.css`, `script.js`). The experiment also uses GitHub Actions, and the site is published on GitHub Pages.
 
-`Git clone [address]`
+## Creating the repository on GitHub
 
-## آماده سازی github action
-در این مرحله بعد از ساخت فولدر `.github/workflow` فایل `yaml` را ساختیم. در این فایل مستندات لازم برای انتشار (deploy) در `github pages` نوشته شده است. در ابتدا مختصری از تنظیمات اولیه مانند `main` اشاره شده است و سپس متغیرات لازم برای ساخت پروژه اضافه شده است. در بخش بعد یک توکن در گیت هاب زده که این توکن دسترسی گیت هاب گسنده شده است و در مخزن گذاشته شده است، و نام آن را `GH_TOKEN`  که در `yaml` گذاشته شده است.
+First, a repository was created on GitHub and then cloned to the local machine with:
 
-## ساخت gitignore
-فایل `.gitignore` به Git می‌گوید که چه فایل‌ها و پوشه‌هایی را نادیده بگیرد و در مخزن ذخیره نکند. این کار به ما کمک می‌کند که فقط فایل‌های مهم مانند جاواگیری یا دستورات فرماندی پروژه ذخیره شوند. این فایل بزرگ و با دستگی‌های خارجی که می‌خواهیم به راحتی پروژه را اجرا شود. در زیر پوشه‌هایی که در فایل `.gitignore` شما اضافه شده است:
+`git clone [address]`
 
+## Setting up GitHub Actions
 
-<p align="right">1. `/node_modules`:</p>
-<p align="right">- پوشه‌ای که توسط `npm` برای ذخیره وابستگی‌های پروژه استفاده می‌شود. این فایل‌ها به طور معمول بسیار بزرگ هستند و می‌توانند به راحتی با استفاده از `npm install` دوباره دانلود شوند.</p>
+After creating the `.github/workflows` folder, we added a YAML workflow file ([`deploy.yml`](.github/workflows/deploy.yml)) that deploys the site to GitHub Pages. It first sets the basic options, such as running on pushes to `main`, and then the steps needed to build the project. Next, we created a GitHub access token, stored it in the repository as a secret named `GH_TOKEN`, and referenced it in the YAML file.
 
-<p align="right">2. `*.npm-debug.log`, `*.log`, `*.logs`:</p>
-<p align="right">- لاگ‌ها و فایل‌های مربوط به لاگ‌ها و خطاهای `npm` که برای دیباگ مشکلات استفاده می‌شود و معمولاً نیازی به نسخه‌گیری ندارند.</p>
+## Creating `.gitignore`
 
-<p align="right">3. `lib-cov`:</p>
-<p align="right">- پوشه‌ای که برای ذخیره کتابخانه‌های تحت پوشش ابزارهایی مانند `jscoverage`/`JSCover` استفاده می‌شود.</p>
+The `.gitignore` file tells Git which files and folders to ignore and not store in the repository. This keeps only the important project files, such as source code and configuration, under version control, and keeps out large files and external dependencies that can be recreated when the project is installed. The entries in our `.gitignore` are:
 
-<p align="right">4. `coverage`:</p>
-<p align="right">- پوشه‌ای که توسط ابزارهایی مانند `istanbul` برای ذخیره گزارش‌های پوشش کد استفاده می‌شود.</p>
+1. `/node_modules`: the folder where `npm` stores the project's dependencies. These files are usually very large and can easily be downloaded again with `npm install`.
+2. `*.npm-debug.log`, `*.log`, `*.logs`: `npm` logs and other log and error files used for debugging, which normally do not need version control.
+3. `lib-cov`: the folder used by coverage tools such as `jscoverage`/`JSCover` for instrumented libraries.
+4. `coverage`: the folder where tools such as `istanbul` store code coverage reports.
+5. `grunt`: the folder where `Grunt` stores temporary files.
+6. `bower_components`: the folder where `Bower` stores the project's dependencies.
+7. `*.swp`, `*.vscode`, `*.idea`: settings and data of development environments such as `WebStorm` and `Visual Studio Code`, and `vim` swap files.
+8. `DS_Store.*`: hidden files that `macOS` creates in every folder to store display metadata.
+9. `*.tmp`, `*.temp`: temporary files that may be created while working on the project.
+10. `build`, `dist`: folders for build output and the final distributable files.
 
-<p align="right">5. `grunt`:</p>
-<p align="right">- پوشه‌ای که برای ذخیره فایل‌های موقت توسط `Grunt` استفاده می‌شود.</p>
+Ignoring these files and folders keeps files that do not need version control out of the repository and stops it from growing unnecessarily.
 
-<p align="right">6. `bower_components`:</p>
-<p align="right">- پوشه‌ای که توسط `Bower` برای ذخیره وابستگی‌های پروژه استفاده می‌شود.</p>
+## Implementing the project with branches
 
-<p align="right">7. `*.swp`, `*.vscode`, `*.idea`:</p>
-<p align="right">- پوشه‌ها و فایل‌های مربوط به تنظیمات و داده‌های محیط‌های توسعه مانند (IDE) `WebStorm`, `Visual Studio Code` و فایل‌های موقت `vim`.</p>
+The project was built in branches, each covering a different part of the work, which were finally merged into `main`.
 
-<p align="right">8. `DS_Store.*`:</p>
-<p align="right">- فایل‌های مخفی که توسط `macOS` در هر پوشه‌ای برای ذخیره متاداده‌های مربوط به نمایش پوشه ایجاد می‌شوند.</p>
+We used more than 20 commits. Besides `main`, we used three branches: `feature`, `dev` and `hotfix`. At the end we deliberately created 3 merge conflicts and resolved them. Each commit implemented one of the following steps:
 
-<p align="right">9. `*.tmp`, `*.temp`:</p>
-<p align="right">- فایل‌های موقت که ممکن است در طول پروژه ایجاد شوند.</p>
+Commits on `dev`:
 
-<p align="right">10. `build`, `dist`:</p>
-<p align="right">- پوشه‌ای که برای ذخیره فایل‌های ساخته‌شده و خروجی نهایی پروژه استفاده می‌شود.</p>
+1. Add the basic HTML structure.
+2. Add basic CSS styles.
+3. Add the basic JavaScript file.
+4. Add the HTML structure for navigation.
+5. Add CSS styles for navigation.
+6. Add the form structure in HTML.
+7. Add form styles in CSS.
+8. Improve the JavaScript to update content dynamically.
+9. Add event listeners to the navigation links.
+10. Add the About and Contact sections to the HTML.
 
+Commits on `feature`:
 
-<p align="right">
-با تایید به گفنهٔ این فایل‌ها و پوشه‌ها، ما می‌توانیم از ذخیره‌سازی فایل‌هایی که نیاز به نسخه‌گیری ندارند و ممکن است باعث بزرگ شدن بی‌جهت مخزن ما شوند، جلوگیری کنیم.
-</p>
+11. Add the HTML structure of the Home section.
+12. Improve the JavaScript for the Home section.
+13. Make the CSS responsive on mobile (add media queries).
+14. Add a basic form to the Contact section in HTML.
+15. Style the form in CSS.
+16. Handle form submission in JavaScript.
 
-## <p align="right">پیاده سازی پروژه و ساخت برنچ ها</p>
-<p align="right">
-در این بخش با استفاده از شاخه‌ها به بخش‌های مختلف پروژه پیاده‌سازی می‌شود. در انتها به شاخه اصلی main مرج می‌کنیم.
-</p>
-<p align="right">
-ما بیش از 20 کامیت برای پیاده‌سازی پروژه استفاده کردیم. همچنین علاوه بر main از سه شاخه feature و dev و hotfix استفاده کردیم. در انتهای کار 3 بار از قصد به conflict برخورد کردیم و آن را resolve کردیم. به طور خلاصه هر کامیت برای انجام کار خاصی برای انجام گام‌های زیر استفاده شده است. (کامیت‌ها معادل هستند.)
-</p>
+Commits on `hotfix`:
 
-<p align="right">
-کامیت‌های برنچ dev:
-</p>
+17. Fix a CSS styling problem.
+18. Add a favicon link to the HTML.
+19. Small JavaScript improvement for form validation.
 
-<p align="right">1. کامیت 1: افزودن ساختار پایه HTML.</p>
-<p align="right">2. کامیت 2: افزودن استایل‌های پایه CSS.</p>
-<p align="right">3. کامیت 3: افزودن فایل پایه جاوااسکریپت.</p>
-<p align="right">4. کامیت 4: افزودن ساختار HTML برای navigation.</p>
-<p align="right">5. کامیت 5: افزودن استایل‌های CSS برای navigation.</p>
-<p align="right">6. کامیت 6: افزودن ساختار فرم در HTML.</p>
-<p align="right">7. کامیت 7: افزودن استایل‌های فرم در CSS.</p>
-<p align="right">8. کامیت 8: بهبود جاوااسکریپت با بروزرسانی محتوای دینامیک.</p>
-<p align="right">9. کامیت 9: افزودن event listeners به لینک‌های ناوبری.</p>
-<p align="right">10. کامیت 10: افزودن بخش‌های About و Contact به HTML.</p>
+Finally, we merged the branches and resolved the conflicts that came up during the merges.
 
-<p align="right">کامیت‌های برنچ feature:</p>
+## Answers to the questions
 
-<p align="right">11. کامیت 11: افزودن ساختار HTML بخش خانه.</p>
-<p align="right">12. کامیت 12: بهبود جاوااسکریپت برای پیش‌بینی کردن به بخش خانه.</p>
-<p align="right">13. کامیت 13: بهبود CSS برای پاسخگویی در موبایل (اضافه کردن media queries).</p>
-<p align="right">14. کامیت 14: افزودن فرم پایه به بخش Contact در HTML.</p>
-<p align="right">15. کامیت 15: استایل‌های فرم در CSS.</p>
-<p align="right">16. کامیت 16: افزودن مدیریت ارسال فرم در جاوااسکریپت.</p>
+**1. What is the `.git` folder? What information does it store? Which command creates it?**
 
+The `.git` folder is a hidden directory that holds all the information and metadata of a Git repository, including the commit history, objects, branches and repository settings. It is created by `git init`.
 
-<p align="right">کامیت‌های برنچ hotfix:</p>
+**2. What does "atomic" mean in an atomic commit and an atomic pull request?**
 
-<p align="right">17. کامیت 17: رفع مشکل در استایل CSS.</p>
-<p align="right">18. کامیت 18: افزودن لینک favicon به HTML.</p>
-<p align="right">19. کامیت 19: بهبود کوچک در جاوااسکریپت برای اعتبارسنجی فرم.</p>
-<p align="right">در انتها به هدف ایجاد کردیم و به هنگام مرج کردن آن‌ها، conflicts را resolve کردیم.</p>
+An atomic commit contains all the changes for one unit of work (such as a feature or a bug fix) together: either all of the changes are applied, or none of them.
 
-## <p align="right">پاسخ به پرسش‌ها</p>
+An atomic pull request contains all the changes needed for one feature or bug fix. If it is accepted, all of its changes are applied together; if it is rejected, none of them are.
 
-<p align="right">1. پوشه git. چیست؟ چه اطلاعاتی در آن ذخیره می‌شود؟ با چه دستوری ساخته می‌شود؟</p>
-<p align="right">پوشه `.git` یک دایرکتوری مخفی است که شامل تمام اطلاعات و متادیتاهای مربوط به یک مخزن گیت است. این اطلاعات شامل تاریخچه کامیت‌ها، object ها، branches و تنظیمات مخزن می‌باشد. همچنین با دستور `git init` این پوشه ساخته می‌شود.</p>
+**3. Explain the differences between `fetch`, `pull`, `merge`, `rebase` and `cherry-pick`.**
 
-<p align="right">2. منظور از atomic بودن در atomic commit و atomic pull-request چیست؟</p>
-<p align="right">Atomic به این معناست که یک کامیت تمامی تغییرات مربوط به یک واحد کاری (مانند یک ویژگی یا باگ‌فیکس) را به صورت یکجا شامل می‌شود. یعنی با تمامی تغییرات اعمال می‌شود یا هیچ‌کدام.</p>
-<p align="right">Atomic Pull-Request به این معناست که یک Pull Request شامل تمام تغییرات لازم برای یک ویژگی یا باگ‌فیکس می‌شود و در صورت قبول شدن، همه تغییرات با هم اعمال می‌شود و اگر رد شود، هیچ کدام از تغییرات اعمال نمی‌شود.</p>
+- `pull`: downloads new changes from the remote repository and then merges them into the current branch.
+- `fetch`: downloads the changes without merging them.
+- `merge`: combines the changes of another branch into the current branch.
+- `rebase`: replays the commits of the current branch on top of a new base branch.
+- `cherry-pick`: applies one or more specific commits from another branch to the current branch.
 
-<p align="right">3. تفاوت دستورات fetch، pull، merge، rebase و cherry-pick را بیان کنید.</p>
+**4. Explain the differences between `reset`, `revert`, `restore`, `switch` and `checkout`.**
 
-<p align="right">- `pull`: این دستور تغییرات جدید را از مخزن ریموت دانلود کرده و سپس آن‌ها را با برنچ جاری مرج می‌کند.</p>
-<p align="right">- `fetch`: این دستور تغییرات را به صورت جداگانه دانلود می‌کند.</p>
-<p align="right">- `merge`: این دستور تغییرات برنچ مختلف را با برنچ فعلی ادغام می‌کند.</p>
-<p align="right">- `rebase`: این دستور تغییرات برنچ جاری را بر روی یک برنچ پایه جدید اعمال می‌کند.</p>
-<p align="right">- `cherry-pick`: این دستور یک یا چند کامیت خاص را از یک برنچ دیگر به برنچ فعلی اعمال می‌کند.</p>
+- `reset`: moves the current branch back to an earlier point and can remove changes from the history.
+- `revert`: undoes a commit by creating a new commit that reverses its changes.
+- `restore`: restores files in the working tree from the history or the staging area.
+- `switch`: switches between branches.
+- `checkout`: switches branches or restores files.
 
-<p align="right">4. تفاوت دستورهای reset، revert، restore، switch و checkout را بیان کنید.</p>
+**5. What is the stage (index)? What does `stash` do?**
 
-<p align="right">- `Reset`: این دستور برنچ جاری را به یک نقطه قبلی برمی‌گرداند و می‌تواند تغییرات را از تاریخچه حذف کند.</p>
-<p align="right">- `Revert`: این دستور یک کامیت را با ایجاد یک کامیت جدید که تغییرات کامیت مشخص را معکوس می‌کند، برمی‌گرداند.</p>
-<p align="right">- `Restore`: این دستور برای بازگرداندن فایل‌ها از تاریخچه یا استیج به حالت کاری استفاده می‌شود.</p>
-<p align="right">- `Switch`: این دستور برای تغییر برنچ‌های کاری استفاده می‌شود.</p>
-<p align="right">- `Checkout`: این دستور برای تغییر برنچ‌های کاری یا بازگرداندن فایل‌ها استفاده می‌شود.</p>
+- Stage / index: a temporary area between the working directory and the history, where file changes are placed before they are committed.
+- `stash`: temporarily saves the current uncommitted changes and returns the working tree to a clean state, so the saved changes can be reapplied later.
 
-<p align="right">5. منظور از stage یا همان index چیست؟ دستور stash چه کاری را انجام می‌دهد؟</p>
+**6. What does "snapshot" mean, and how does it relate to a commit?**
 
-<p align="right">- `Stage` یا `Index`: فضایی موقت بین working directory و تاریخچه است که تغییرات فایل‌ها قبل از کامیت شدن در آن قرار می‌گیرند.</p>
-<p align="right">- `Stash`: این دستور تغییرات کاری جاری را به طور موقت ذخیره کرده و ورک‌تری را به حالت تمیز بازمی‌گرداند تا پیدا کردن تغییرات دوباره اعمال شوند.</p>
+- Snapshot: a complete picture of the state of all files at a given moment. Every Git commit is a snapshot of the project at that moment.
+- Commit: stores a snapshot of the project's changes and records it in the project history.
 
-<p align="right">6. مفهوم snapshot چه مضامینی دارد؟ ارتباط آن با commit چیست؟</p>
+**7. What are the differences between a local and a remote repository?**
 
-<p align="right">- `Snapshot`: به معنای تصویری کامل از وضعیت تمام فایل‌ها در یک لحظه خاص است. هر کامیت در گیت snapshot از پروژه در آن لحظه است.</p>
-<p align="right">- `Commit`: یک snapshot از تغییرات انجام شده در پروژه را ذخیره می‌کند و این snapshot در تاریخچه پروژه ثبت می‌شود.</p>
-
-<p align="right">7. تفاوت‌های local repository و remote repository چیست؟</p>
-
-<p align="right">- `Local Repository`: نسخه‌ای از مخزن گیت که بر روی کامپیوتر محلی کاربر قرار دارد. کاربر می‌تواند تغییرات را در این نسخه اعمال کرده و آن‌ها را کامیت کند.</p>
-<p align="right">- `Remote Repository`: نسخه‌ای از مخزن گیت که روی یک سرور خارجی قرار دارد و معمولاً برای اشتراک گذاری بین چندین کاربر استفاده می‌شود. تغییرات بین مخازن لوکال و ریموت با استفاده از دستورهایی مانند `fetch`، `pull` و `push` تبادل می‌شوند.</p>
+- Local repository: the copy of a Git repository on the user's own computer. The user makes and commits changes in this copy.
+- Remote repository: a copy of the repository on an external server, usually used to share work between several people. Changes are exchanged between local and remote repositories with commands such as `fetch`, `pull` and `push`.
