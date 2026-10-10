@@ -2,7 +2,7 @@
 
 # Software Engineering Lab, Experiment 1: Git and GitHub
 
-Lab report by Amirhossein Khoeiniha and Ali Rahimi.
+Lab report by Amirhossein Khoshbakht and Ali Rahimi.
 
 ## Introduction
 
